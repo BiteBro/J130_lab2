@@ -51,12 +51,12 @@ public class Main {
             System.out.println("");
             ProductCode code = new ProductCode("CN", 'H', "Connector");  //MO
             code.save(connection);
-            //printAllCodes(connection);
+            printAllCodes(connection);
             
             //code.setCode("MV");
             //code.save(connection);
-            System.out.println("");
-            printAllCodes(connection);    
+            //System.out.println("");
+            //printAllCodes(connection);    
             
         }
     }    

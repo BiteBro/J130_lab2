@@ -178,6 +178,7 @@ public class ProductCode {
      * @param connection действительное соединение с базой данных
      * @return Запрос в виде объекта класса {@link PreparedStatement}
      * @throws java.sql.SQLException
+     * @throws java.io.IOException
      */
     public static PreparedStatement getUpdateQuery(Connection connection) throws SQLException, IOException {
         return connection.prepareStatement(
@@ -186,6 +187,7 @@ public class ProductCode {
     }
     /**
      * Преобразует {@link ResultSet} в коллекцию объектов типа {@link ProductCode}
+     * @param resultSet
      * @param set {@link ResultSet}, полученный в результате запроса, содержащего 
      * все поля таблицы PRODUCT_CODE базы данных Sample
      * @return Коллекция объектов типа {@link ProductCode}
@@ -214,7 +216,8 @@ public class ProductCode {
      * @throws java.io.IOException
      */
     public void save(Connection connection) throws SQLException, IOException {
-        PreparedStatement prepStatement = getSelectQuery(connection);
+        //PreparedStatement prepStatement = getSelectQuery(connection);
+        PreparedStatement prepStatement = connection.prepareStatement("SELECT * FROM PRODUCT_CODE");
         try(ResultSet result = prepStatement.executeQuery()){
             while(result.next()){
                 if (this.getCode().equals(result.getString("PROD_CODE"))){
